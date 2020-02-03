@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Core.Messages;
 
 namespace Core
 {
@@ -6,17 +8,26 @@ namespace Core
     {
         private readonly IList<IGameMod> _gameMods;
 
-        protected ILogger Logger { get; }
+        private readonly MessageBus _messageBus;
 
-        protected Game(ILogger logger)
+        private readonly ILogger _logger;
+
+        private bool _canClose;
+
+        private MessageBus.SubscriptionToken _quitMessageToken;
+
+        protected Game(ILogger logger, MessageBus messageBus)
         {
-            Logger = logger;
+            _logger = logger;
+            _messageBus = messageBus;
+            _quitMessageToken = _messageBus.Subscribe<QuitGameMessage>(async message => _canClose = await Task.FromResult(true));
 
             _gameMods = new List<IGameMod>();
         }
 
         protected virtual void Cleanup()
         {
+            _messageBus.Unsubscribe(_quitMessageToken);
         }
 
         protected virtual void Initialize()
@@ -31,10 +42,11 @@ namespace Core
         public void Run(string[] args)
         {
             Initialize();
-            foreach (var arg in args)
+
+            while (!_canClose)
             {
-                Logger.Write(arg);
             }
+
             Cleanup();
         }
     }

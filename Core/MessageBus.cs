@@ -1,17 +1,11 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Core;
-using DryIoc;
 
-namespace Demo
+namespace Core
 {
-
     public sealed class MessageBus
     {
         private interface ISubscriber { }
