@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using Core;
 using DryIoc;
 
-namespace DemoGame
+namespace Demo
 {
     internal class Program
     {
         private readonly ILogger _logger;
+
+        private readonly IGame _game;
 
         public static void Main(string[] args)
         {
@@ -43,15 +44,17 @@ namespace DemoGame
             return container;
         }
 
-        public Program(ILogger logger)
+        public Program(ILogger logger, IGame game)
         {
             _logger = logger;
+            _game = game;
+
             _logger.Write("calling Program.ctor");
         }
 
         private void Run(string[] args)
         {
-            _logger.Write(string.Format("Args: {0}", string.Join(";", args)));
+            _game.Run(args);
         }
     }
 }

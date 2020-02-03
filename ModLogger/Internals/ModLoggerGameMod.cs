@@ -12,5 +12,13 @@ namespace ModLoggerGameMod.Internals
         public string Description => "It logs stuff";
 
         public Version Version => new Version(1, 0, 0);
+
+        private readonly IGame _game;
+
+        public ModLoggerGameMod(IGame game)
+        {
+            _game = game;
+            _game.RegisterGameMod(this);
+        }
     }
 }

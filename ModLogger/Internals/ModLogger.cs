@@ -7,8 +7,6 @@ namespace ModLoggerGameMod.Internals
     {
         public void Write(string message)
         {
-            Console.WriteLine("Hello from ModLogger");
-
             Console.WriteLine(message);
         }
     }
