@@ -2,17 +2,25 @@ using System.Collections.Generic;
 
 namespace Core
 {
-    public class Game : IGame
+    public abstract class Game : IGame
     {
         private readonly IList<IGameMod> _gameMods;
 
-        public ILogger Logger { get; }
+        protected ILogger Logger { get; }
 
-        public Game(ILogger logger)
+        protected Game(ILogger logger)
         {
             Logger = logger;
 
             _gameMods = new List<IGameMod>();
+        }
+
+        protected virtual void Cleanup()
+        {
+        }
+
+        protected virtual void Initialize()
+        {
         }
 
         public void RegisterGameMod(IGameMod gameMod)
@@ -22,10 +30,12 @@ namespace Core
 
         public void Run(string[] args)
         {
+            Initialize();
             foreach (var arg in args)
             {
                 Logger.Write(arg);
             }
+            Cleanup();
         }
     }
 }
