@@ -20,7 +20,6 @@ namespace Core
         {
             _logger = logger;
             _messageBus = messageBus;
-            _quitMessageToken = _messageBus.Subscribe<QuitGameMessage>(async message => _canClose = await Task.FromResult(true));
 
             _gameMods = new List<IGameMod>();
         }
@@ -32,6 +31,7 @@ namespace Core
 
         protected virtual void Initialize()
         {
+            _quitMessageToken = _messageBus.Subscribe<QuitGameMessage>(async _ => _canClose = await Task.FromResult(true).ConfigureAwait(false));
         }
 
         public void RegisterGameMod(IGameMod gameMod)
