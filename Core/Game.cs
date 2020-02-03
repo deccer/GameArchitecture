@@ -27,13 +27,14 @@ namespace Core
 
         protected virtual void Cleanup()
         {
+            _logger.Write("Game: Cleanup");
             _messageBus.Unsubscribe(_quitMessageToken);
         }
 
         protected virtual void Initialize()
         {
             _logger.Write("Game: Initializing");
-            _quitMessageToken = _messageBus.Subscribe<QuitGameMessage>(_ => Task.Run(() => _window.Close()));
+            _quitMessageToken = _messageBus.Subscribe<QuitGameMessage>(_ => _window.Close());
         }
 
         public void RegisterGameMod(IGameMod gameMod)

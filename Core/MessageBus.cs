@@ -32,6 +32,19 @@ namespace Core
                     .ConfigureAwait(false);
         }
 
+        public class SynchronousSubscriber<TMessage> : ISubscriber
+        {
+            private readonly Action<TMessage> _handler;
+
+            internal SynchronousSubscriber(Action<TMessage> handler)
+            {
+                _handler = handler;
+            }
+
+            public static void Publish(SynchronousSubscriber<TMessage> subscriber, TMessage message)
+                => subscriber._handler.Invoke(message);
+        }
+
         public struct SubscriptionToken
         {
             private Guid Value { get; }
@@ -62,6 +75,19 @@ namespace Core
 
             var token = Guid.NewGuid();
             _subscriptions[messageType].Add((token, new Subscriber<TMessage>(subscriber)));
+            return new SubscriptionToken(messageType, token);
+        }
+
+        public SubscriptionToken Subscribe<TMessage>(Action<TMessage> subscriber)
+        {
+            var messageType = typeof(TMessage);
+            if (!_subscriptions.ContainsKey(messageType))
+            {
+                _subscriptions[messageType] = new HashSet<(Guid, ISubscriber)>();
+            }
+
+            var token = Guid.NewGuid();
+            _subscriptions[messageType].Add((token, new SynchronousSubscriber<TMessage>(subscriber)));
             return new SubscriptionToken(messageType, token);
         }
 
