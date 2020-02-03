@@ -13,7 +13,7 @@ namespace ModWindow.Internal
         public ModWindow(MessageBus messageBus)
         {
             _messageBus = messageBus;
-            _gameWindow = new GameWindow(1920, 1080);
+            _gameWindow = new GameWindow(800, 600);
             _gameWindow.Closing += GameWindowClosing;
         }
 
@@ -22,9 +22,9 @@ namespace ModWindow.Internal
             _gameWindow.Close();
         }
 
-        public void Present()
+        public void Show()
         {
-            _gameWindow.SwapBuffers();
+            _gameWindow.Run();
         }
 
         private void GameWindowClosing(object sender, CancelEventArgs eventArgs)

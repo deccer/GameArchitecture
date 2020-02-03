@@ -28,7 +28,7 @@ namespace Demo
             var modDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Mods");
 
             var entryPoints = Directory.GetFiles(modDirectory, "*.dll")
-                .Select(Assembly.LoadFile)
+                .Select(Assembly.LoadFrom)
                 .SelectMany(entryPointAssembly =>
                 {
                     return entryPointAssembly.GetTypes()
@@ -41,6 +41,7 @@ namespace Demo
             }
 
             container.Register<Program>(Reuse.Singleton);
+            container.Register<MessageBus>(Reuse.Singleton);
             container.Register<IGame, Game>(Reuse.Singleton);
             return container;
         }

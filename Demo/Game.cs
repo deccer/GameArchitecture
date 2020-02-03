@@ -2,10 +2,10 @@ using Core;
 
 namespace Demo
 {
-    internal class Game : Core.Game
+    public class Game : Core.Game
     {
-        protected Game(ILogger logger, MessageBus messageBus)
-            : base(logger, messageBus)
+        public Game(ILogger logger, MessageBus messageBus, IWindow window)
+            : base(logger, messageBus, window)
         {
         }
     }

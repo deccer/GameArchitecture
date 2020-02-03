@@ -8,18 +8,19 @@ namespace Core
     {
         private readonly IList<IGameMod> _gameMods;
 
-        private readonly MessageBus _messageBus;
-
         private readonly ILogger _logger;
+        private readonly MessageBus _messageBus;
+        private readonly IWindow _window;
 
         private bool _canClose;
 
         private MessageBus.SubscriptionToken _quitMessageToken;
 
-        protected Game(ILogger logger, MessageBus messageBus)
+        protected Game(ILogger logger, MessageBus messageBus, IWindow window)
         {
             _logger = logger;
             _messageBus = messageBus;
+            _window = window;
 
             _gameMods = new List<IGameMod>();
         }
@@ -31,6 +32,7 @@ namespace Core
 
         protected virtual void Initialize()
         {
+            _window.Show();
             _quitMessageToken = _messageBus.Subscribe<QuitGameMessage>(async _ => _canClose = await Task.FromResult(true).ConfigureAwait(false));
         }
 
@@ -42,7 +44,6 @@ namespace Core
         public void Run(string[] args)
         {
             Initialize();
-
             while (!_canClose)
             {
             }
