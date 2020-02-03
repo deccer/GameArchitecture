@@ -7,19 +7,31 @@ using DryIoc;
 
 namespace Demo
 {
-    internal class Game : Core.Game
+    internal class Game : IGame
     {
         protected Game(ILogger logger)
             : base(logger)
         {
         }
 
-        protected override void Cleanup()
+        private void Cleanup()
         {
         }
 
-        protected override void Initialize()
+        private void Initialize()
         {
+        }
+
+        public void Run(string[] args)
+        {
+            Initialize();
+
+            while (true)
+            {
+
+            }
+
+            Cleanup();
         }
     }
 }
