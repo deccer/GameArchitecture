@@ -1,7 +1,7 @@
 using System;
 using Core;
 
-namespace ModLoggerGameMod.Internals
+namespace ModLoggerGameMod.Internal
 {
     internal class ModLogger : ILogger
     {

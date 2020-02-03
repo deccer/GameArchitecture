@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using Core;
 using Core.Messages;
 using OpenTK;
@@ -8,6 +7,9 @@ namespace ModWindow.Internal
 {
     internal class ModWindow : IWindow
     {
+        public event Action<FrameEventArgs> OnUpdateFrame;
+        public event Action<FrameEventArgs> OnRenderFrame;
+
         private readonly GameWindow _gameWindow;
 
         private readonly MessageBus _messageBus;

@@ -1,6 +1,6 @@
 using Core;
 
-namespace ModRendererGameMod.Internals
+namespace ModRendererGameMod.Internal
 {
     internal class ModRenderer : IRenderer
     {

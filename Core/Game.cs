@@ -1,13 +1,10 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Core.Messages;
 
 namespace Core
 {
     public abstract class Game : IGame
     {
-        private readonly IList<IGameMod> _gameMods;
-
         private readonly ILogger _logger;
 
         private readonly MessageBus _messageBus;
@@ -21,8 +18,6 @@ namespace Core
             _logger = logger;
             _messageBus = messageBus;
             _window = window;
-
-            _gameMods = new List<IGameMod>();
         }
 
         protected virtual void Cleanup()
@@ -35,12 +30,6 @@ namespace Core
         {
             _logger.Write("Game: Initializing");
             _quitMessageToken = _messageBus.Subscribe<QuitGameMessage>(_ => _window.Close());
-        }
-
-        public void RegisterGameMod(IGameMod gameMod)
-        {
-            _logger.Write($"Mod: Registering {gameMod.Name} {gameMod.Version}");
-            _gameMods.Add(gameMod);
         }
 
         public void Run(string[] args)
