@@ -1,14 +1,18 @@
 using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Core;
 using DryIoc;
 
 namespace Demo
 {
 
-    public sealed class MessageBus : IMessageBus
+    public sealed class MessageBus
     {
         private interface ISubscriber { }
 
@@ -90,7 +94,7 @@ namespace Demo
                     }
                 }
 
-                await Task.WhenAll(publishedTasks);
+                await Task.WhenAll(publishedTasks).ConfigureAwait(false);
             }
         }
 

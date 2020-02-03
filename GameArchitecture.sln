@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModLogger", "ModLogger\ModL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModRenderer", "ModRenderer\ModRenderer.csproj", "{D59C3D99-B93E-4B36-831C-C5D030D03729}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoGame", "DemoGame\DemoGame.csproj", "{DAEE8FF3-3727-4BFD-B549-9D05EBD09B1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{DAEE8FF3-3727-4BFD-B549-9D05EBD09B1E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{DFE1023B-E897-4075-97A4-A41B7A4C6B8A}"
 EndProject
