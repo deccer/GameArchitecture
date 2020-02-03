@@ -9,10 +9,10 @@ namespace Core
         private readonly IList<IGameMod> _gameMods;
 
         private readonly ILogger _logger;
-        private readonly MessageBus _messageBus;
-        private readonly IWindow _window;
 
-        private bool _canClose;
+        private readonly MessageBus _messageBus;
+
+        private readonly IWindow _window;
 
         private MessageBus.SubscriptionToken _quitMessageToken;
 
@@ -32,21 +32,21 @@ namespace Core
 
         protected virtual void Initialize()
         {
-            _window.Show();
-            _quitMessageToken = _messageBus.Subscribe<QuitGameMessage>(async _ => _canClose = await Task.FromResult(true).ConfigureAwait(false));
+            _logger.Write("Game: Initializing");
+            _quitMessageToken = _messageBus.Subscribe<QuitGameMessage>(_ => Task.Run(() => _window.Close()));
         }
 
         public void RegisterGameMod(IGameMod gameMod)
         {
+            _logger.Write($"Mod: Registering {gameMod.Name} {gameMod.Version}");
             _gameMods.Add(gameMod);
         }
 
         public void Run(string[] args)
         {
             Initialize();
-            while (!_canClose)
-            {
-            }
+
+            _window.Run();
 
             Cleanup();
         }

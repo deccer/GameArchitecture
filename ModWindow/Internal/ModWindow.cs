@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using Core;
 using Core.Messages;
@@ -8,13 +9,16 @@ namespace ModWindow.Internal
     internal class ModWindow : IWindow
     {
         private readonly GameWindow _gameWindow;
+
         private readonly MessageBus _messageBus;
 
         public ModWindow(MessageBus messageBus)
         {
             _messageBus = messageBus;
             _gameWindow = new GameWindow(800, 600);
-            _gameWindow.Closing += GameWindowClosing;
+            _gameWindow.Closed += GameWindowClosed;
+            _gameWindow.UpdateFrame += GameWindowUpdateFrame;
+            _gameWindow.RenderFrame += GameWindowRenderFrame;
         }
 
         public void Close()
@@ -22,12 +26,20 @@ namespace ModWindow.Internal
             _gameWindow.Close();
         }
 
-        public void Show()
+        public void Run()
         {
             _gameWindow.Run();
         }
 
-        private void GameWindowClosing(object sender, CancelEventArgs eventArgs)
+        private void GameWindowUpdateFrame(object sender, FrameEventArgs eventArgs)
+        {
+        }
+
+        private void GameWindowRenderFrame(object sender, FrameEventArgs eventArgs)
+        {
+        }
+
+        private void GameWindowClosed(object sender, EventArgs eventArgs)
         {
             _messageBus.PublishWait(new QuitGameMessage());
         }

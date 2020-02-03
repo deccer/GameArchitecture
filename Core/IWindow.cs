@@ -4,6 +4,6 @@ namespace Core
     {
         void Close();
 
-        void Show();
+        void Run();
     }
 }
