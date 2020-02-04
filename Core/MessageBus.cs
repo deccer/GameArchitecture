@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public sealed class MessageBus
+    public sealed class MessageBus : IMessageBus
     {
         private interface ISubscriber { }
 
@@ -22,7 +22,7 @@ namespace Core
             public static Task PublishAsync(Subscriber<TMessage> subscriber, TMessage message)
                 => subscriber._handler.Invoke(message);
 
-            public static ConfiguredTaskAwaitable PublishConfiguredAsync(Subscriber<TMessage> subscriber, TMessage message)
+            public static ConfiguredTaskAwaitable PublishConfigured(Subscriber<TMessage> subscriber, TMessage message)
                 => subscriber._handler.Invoke(message)
                     .ConfigureAwait(false);
 
@@ -126,7 +126,7 @@ namespace Core
                 {
                     if (subscriber.Subscriber is Subscriber<TMessage> validSubscriber)
                     {
-                        await Subscriber<TMessage>.PublishConfiguredAsync(validSubscriber, message);
+                        await Subscriber<TMessage>.PublishConfigured(validSubscriber, message);
                     }
                 }
             }
