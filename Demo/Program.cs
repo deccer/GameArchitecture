@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Core;
+using Demo.Input;
 using DryIoc;
 
 namespace Demo
@@ -41,7 +42,8 @@ namespace Demo
             }
 
             container.Register<Program>(Reuse.Singleton);
-            container.Register<MessageBus>(Reuse.Singleton);
+            container.Register<IMessageBus, MessageBus>(Reuse.Singleton);
+            container.Register<IInputHandler, InputHandler>(Reuse.Singleton);
             container.Register<IGame, Game>(Reuse.Singleton);
             return container;
         }

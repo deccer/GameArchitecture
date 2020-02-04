@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Core.Messages;
 
 namespace Core
@@ -7,13 +6,13 @@ namespace Core
     {
         private readonly ILogger _logger;
 
-        private readonly MessageBus _messageBus;
+        private readonly IMessageBus _messageBus;
 
         private readonly IWindow _window;
 
         private MessageBus.SubscriptionToken _quitMessageToken;
 
-        protected Game(ILogger logger, MessageBus messageBus, IWindow window)
+        protected Game(ILogger logger, IMessageBus messageBus, IWindow window)
         {
             _logger = logger;
             _messageBus = messageBus;
