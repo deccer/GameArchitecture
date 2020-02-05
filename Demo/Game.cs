@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using Core;
 using Demo.Messages;
 
@@ -29,11 +28,9 @@ namespace Demo
             _inputKeyMessageToken = _messageBus.Subscribe<InputKeyMessage>(ReceivedInputKeyMessage);
         }
 
-        private async Task ReceivedInputKeyMessage(InputKeyMessage inputKeyMessage)
+        private void ReceivedInputKeyMessage(InputKeyMessage inputKeyMessage)
         {
             Console.WriteLine($"{inputKeyMessage.Key} Down");
-
-            await Task.CompletedTask.ConfigureAwait(false);
         }
     }
 }

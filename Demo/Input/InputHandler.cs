@@ -14,23 +14,23 @@ namespace Demo.Input
             _messageBus = messageBus;
         }
 
-        public async void HandleInput(KeyboardState keyboardState)
+        public void HandleInput(KeyboardState keyboardState)
         {
             if (keyboardState.IsKeyDown(Key.W))
             {
-                await _messageBus.PublishWaitAsync(new InputKeyMessage(Key.W)).ConfigureAwait(false);
+                _messageBus.PublishWait(new InputKeyMessage(Key.W));
             }
             if (keyboardState.IsKeyDown(Key.S))
             {
-                await _messageBus.PublishWaitAsync(new InputKeyMessage(Key.S)).ConfigureAwait(false);
+                _messageBus.PublishWait(new InputKeyMessage(Key.S));
             }
             if (keyboardState.IsKeyDown(Key.A))
             {
-                await _messageBus.PublishWaitAsync(new InputKeyMessage(Key.A)).ConfigureAwait(false);
+                _messageBus.PublishWait(new InputKeyMessage(Key.A));
             }
             if (keyboardState.IsKeyDown(Key.D))
             {
-                await _messageBus.PublishWaitAsync(new InputKeyMessage(Key.D)).ConfigureAwait(false);
+                _messageBus.PublishWait(new InputKeyMessage(Key.D));
             }
         }
     }

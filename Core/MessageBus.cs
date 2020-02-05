@@ -141,9 +141,14 @@ namespace Core
 
             foreach (var subscriber in subscribers)
             {
-                if (subscriber.Subscriber is Subscriber<TMessage> validSubscriber)
+                switch (subscriber.Subscriber)
                 {
-                    Subscriber<TMessage>.Publish(validSubscriber, message);
+                    case Subscriber<TMessage> validSubscriber:
+                        Subscriber<TMessage>.Publish(validSubscriber, message);
+                        break;
+                    case SynchronousSubscriber<TMessage> validSynchronousSubscriber:
+                        SynchronousSubscriber<TMessage>.Publish(validSynchronousSubscriber, message);
+                        break;
                 }
             }
         }
