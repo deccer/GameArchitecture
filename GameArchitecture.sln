@@ -1,17 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModLogger", "ModLogger\ModLogger.csproj", "{D4F1F898-A82B-4326-B5CE-FA1785F56452}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModLogger", "ModLogger\ModLogger.csproj", "{D4F1F898-A82B-4326-B5CE-FA1785F56452}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModRenderer", "ModRenderer\ModRenderer.csproj", "{D59C3D99-B93E-4B36-831C-C5D030D03729}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModRenderer", "ModRenderer\ModRenderer.csproj", "{D59C3D99-B93E-4B36-831C-C5D030D03729}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{DAEE8FF3-3727-4BFD-B549-9D05EBD09B1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo", "Demo\Demo.csproj", "{DAEE8FF3-3727-4BFD-B549-9D05EBD09B1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{DFE1023B-E897-4075-97A4-A41B7A4C6B8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{DFE1023B-E897-4075-97A4-A41B7A4C6B8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModWindow", "ModWindow\ModWindow.csproj", "{EAAC3792-58A2-4991-920B-131066191330}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModWindow", "ModWindow\ModWindow.csproj", "{EAAC3792-58A2-4991-920B-131066191330}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{929AE5AE-BA3F-4D79-AC32-5E61B1FCF059}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +26,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D4F1F898-A82B-4326-B5CE-FA1785F56452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -86,5 +88,11 @@ Global
 		{EAAC3792-58A2-4991-920B-131066191330}.Release|x64.Build.0 = Release|Any CPU
 		{EAAC3792-58A2-4991-920B-131066191330}.Release|x86.ActiveCfg = Release|Any CPU
 		{EAAC3792-58A2-4991-920B-131066191330}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0295957D-C9D1-4F53-B02F-53758B5C11F2}
 	EndGlobalSection
 EndGlobal
