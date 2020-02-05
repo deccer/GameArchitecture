@@ -12,6 +12,7 @@ namespace Demo
         protected override void Cleanup()
         {
             _messageBus.Unsubscribe(_inputKeyMessageToken);
+
             base.Cleanup();
         }
 
