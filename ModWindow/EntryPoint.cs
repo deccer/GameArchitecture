@@ -8,6 +8,7 @@ namespace ModWindow
     {
         public static void Register(IRegistrator registrator)
         {
+            registrator.Register<IInputHandler, Internal.WindowInputHandler>(Reuse.Singleton);
             registrator.Register<IWindow, Internal.ModWindow>(Reuse.Singleton);
         }
     }

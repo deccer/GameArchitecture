@@ -1,9 +1,12 @@
+using System;
 using OpenTK.Input;
 
 namespace Core
 {
     public interface IInputHandler
     {
-        void HandleInput(KeyboardState keyboardState);
+        event Action<KeyboardState> OnInputDetected;
+
+        void NotifyInput(KeyboardState state);
     }
 }

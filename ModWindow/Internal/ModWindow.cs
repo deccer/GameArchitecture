@@ -48,7 +48,7 @@ namespace ModWindow.Internal
             var currentKeyboardState = Keyboard.GetState();
             if (currentKeyboardState != _previousKeyboardState)
             {
-                _inputHandler?.HandleInput(currentKeyboardState);
+                _inputHandler.NotifyInput(currentKeyboardState);
             }
             _previousKeyboardState = currentKeyboardState;
         }
