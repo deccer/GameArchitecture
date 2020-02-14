@@ -1,6 +1,5 @@
 using System;
 using Core;
-using Demo.Messages;
 using OpenTK.Input;
 
 namespace Demo
@@ -27,12 +26,20 @@ namespace Demo
             {
                 Console.WriteLine("You just pressed W.");
             }
+            if (state.IsKeyDown(Key.S))
+            {
+            }
+            if (state.IsKeyDown(Key.A))
+            {
+            }
+            if (state.IsKeyDown(Key.D))
+            {
+            }
         }
 
         protected override void Initialize()
         {
             base.Initialize();
         }
-
     }
 }

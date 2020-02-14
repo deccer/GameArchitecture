@@ -4,19 +4,19 @@ namespace Core
 {
     public abstract class Game : IGame
     {
+        private readonly ILogger _logger;
+        
         private readonly IMessageBus _messageBus;
 
         private readonly IWindow _window;
 
         private MessageBus.SubscriptionToken _quitMessageToken;
 
-        private readonly ILogger _logger;
-
         protected Game(ILogger logger, IMessageBus messageBus, IWindow window)
         {
+            _logger = logger;
             _messageBus = messageBus;
             _window = window;
-            _logger = logger;
         }
 
         protected virtual void Cleanup()
