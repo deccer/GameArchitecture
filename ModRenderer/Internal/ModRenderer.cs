@@ -18,6 +18,14 @@ namespace ModRendererGameMod.Internal
 
         private int _vertexArrayObject;
 
+        private readonly ILogger _logger;
+
+        public void Dispose()
+        {
+            GL.DeleteBuffer(_vertexBufferObject);
+            GL.DeleteVertexArray(_vertexArrayObject);
+        }
+
         public void DrawRectangle(Vector2 position, Vector2 size, Color color)
         {
             GL.BindVertexArray(_vertexArrayObject);
@@ -26,6 +34,7 @@ namespace ModRendererGameMod.Internal
 
         public void Initialize()
         {
+            _logger.Write("Initializing - ModRenderer");
             _vertexBufferObject = GL.GenBuffer();
 
             GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
@@ -37,6 +46,11 @@ namespace ModRendererGameMod.Internal
 
             GL.EnableVertexAttribArray(0);
             GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
+        }
+
+        public ModRenderer(ILogger logger)
+        {
+            _logger = logger;
         }
     }
 }

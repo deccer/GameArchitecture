@@ -23,7 +23,7 @@ namespace Demo
 
         private static IContainer CreateCompositionRoot()
         {
-            var container = new Container();
+            var container = new Container(rules => rules.WithTrackingDisposableTransients());
 
             var modDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Mods");
 

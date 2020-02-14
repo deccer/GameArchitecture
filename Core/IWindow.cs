@@ -1,6 +1,8 @@
+using System;
+
 namespace Core
 {
-    public interface IWindow
+    public interface IWindow : IDisposable
     {
         void Close();
 

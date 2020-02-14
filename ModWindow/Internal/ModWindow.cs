@@ -17,15 +17,20 @@ namespace ModWindow.Internal
 
         private readonly IMessageBus _messageBus;
 
+        private readonly ILogger _logger;
+
         private readonly IInputHandler _inputHandler;
+
         private readonly IRenderer _renderer;
+
         private KeyboardState _previousKeyboardState;
 
-        public ModWindow(IMessageBus messageBus, IInputHandler inputHandler, IRenderer renderer)
+        public ModWindow(IMessageBus messageBus, ILogger logger, IInputHandler inputHandler, IRenderer renderer)
         {
             _previousKeyboardState = Keyboard.GetState();
 
             _messageBus = messageBus;
+            _logger = logger;
             _inputHandler = inputHandler;
             _renderer = renderer;
             _gameWindow = new GameWindow(800, 600);
@@ -38,6 +43,12 @@ namespace ModWindow.Internal
         public void Close()
         {
             _gameWindow.Close();
+        }
+
+        public void Dispose()
+        {
+            _logger.Write("Cleanup - ModWindow");
+            _renderer.Dispose();
         }
 
         public void Run()
