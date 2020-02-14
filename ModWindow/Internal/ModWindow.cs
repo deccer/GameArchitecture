@@ -32,6 +32,7 @@ namespace ModWindow.Internal
             _gameWindow.Closed += GameWindowClosed;
             _gameWindow.UpdateFrame += GameWindowUpdateFrame;
             _gameWindow.RenderFrame += GameWindowRenderFrame;
+            _gameWindow.Load += GameWindowLoad;
         }
 
         public void Close()
@@ -42,6 +43,11 @@ namespace ModWindow.Internal
         public void Run()
         {
             _gameWindow.Run();
+        }
+
+        private void GameWindowLoad(object sender, EventArgs eventArgs)
+        {
+            _renderer.Initialize();
         }
 
         private void GameWindowUpdateFrame(object sender, FrameEventArgs eventArgs)
@@ -57,6 +63,7 @@ namespace ModWindow.Internal
         private void GameWindowRenderFrame(object sender, FrameEventArgs eventArgs)
         {
             _renderer.DrawRectangle(new Vector2(-0.5f, -0.5f), new Vector2(0.25f, 0.25f), Color.Yellow);
+            _gameWindow.SwapBuffers();
         }
 
         private void GameWindowClosed(object sender, EventArgs eventArgs)
